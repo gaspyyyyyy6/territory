@@ -6,8 +6,9 @@ const modal = document.getElementById('modal');
 const nameInput = document.getElementById('name');
 const descInput = document.getElementById('desc');
 const colorInput = document.getElementById('color');
+const BACKEND_URL = "https://ton-backend.onrender.com/server.json";
 
-fetch('zones.json').then(r => r.json()).then(z => {
+fetch(BACKEND_URL).then(r => r.json()).then(z => {
   data = z;
   updateMap();
   updateRanking();
@@ -51,7 +52,7 @@ document.getElementById('delete').onclick = () => {
 };
 
 function saveData() {
-  fetch('zones.json', {
+  fetch(BACKEND_URL, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data)
@@ -61,6 +62,7 @@ function saveData() {
     updateRanking();
   });
 }
+
 
 function updateRanking() {
   const counts = {};
